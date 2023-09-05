@@ -12,7 +12,7 @@ A simple web application built with Next.js and Tailwind CSS that allows you to 
 
 ## Demo
 
-Check out the live version [Country list app](country-list-nine.vercel.app).
+Check out the live version [Country list app](https://country-list-nine.vercel.app).
 
 ## Screenshots
 
