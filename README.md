@@ -1,6 +1,6 @@
 # CountryList / CountryFinder
 
-![CountryFinder](./public/images/countryfinder.png)
+![image](https://github.com/thalesmaiaa/country-list/assets/84349239/325e76dc-14b2-4cda-a3a4-3e663a6b8744)
 
 A simple web application built with Next.js and Tailwind CSS that allows you to search and find information about countries around the world. You can quickly retrieve details such as population, border countries, and more with just a few clicks. Explore the globe right from your browser!
 
@@ -12,13 +12,14 @@ A simple web application built with Next.js and Tailwind CSS that allows you to 
 
 ## Demo
 
-Check out the live demo [here](https://your-demo-url.com).
+Check out the live version [Country list app](https://your-demo-url.com).
 
 ## Screenshots
 
-![Screenshot 1](./public/images/screenshot1.png)
+![image](https://github.com/thalesmaiaa/country-list/assets/84349239/b207e68b-0b34-45a5-847f-4ae56ee3c3a8)
 
-![Screenshot 2](./public/images/screenshot2.png)
+
+![image](https://github.com/thalesmaiaa/country-list/assets/84349239/aad457e3-ef22-444c-a26a-29821649c72a)
 
 ## Getting Started
 
@@ -62,9 +63,6 @@ Make sure you have Node.js and npm (Node Package Manager) installed on your mach
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
 - [REST Countries API](https://restcountries.com/) - Provides country data used in this application.
 
-## Contributing
-
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
 
 ## License
 
