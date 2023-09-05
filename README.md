@@ -1,34 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CountryList / CountryFinder
+
+![CountryFinder](./public/images/countryfinder.png)
+
+A simple web application built with Next.js and Tailwind CSS that allows you to search and find information about countries around the world. You can quickly retrieve details such as population, border countries, and more with just a few clicks. Explore the globe right from your browser!
+
+## Features
+
+- **Country Search:** Easily search for countries by name or region.
+- **Country Details:** Get detailed information about any country, including population, area, capital, and more.
+- **Responsive Design:** The application is designed to work seamlessly on both desktop and mobile devices.
+
+## Demo
+
+Check out the live demo [here](https://your-demo-url.com).
+
+## Screenshots
+
+![Screenshot 1](./public/images/screenshot1.png)
+
+![Screenshot 2](./public/images/screenshot2.png)
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Make sure you have Node.js and npm (Node Package Manager) installed on your machine.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/thalesmaiaa/country-list.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Change into the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd country-list
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Install the dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Start the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm run dev
+   ```
+
+5. Open your web browser and navigate to `http://localhost:3000` to see the application running locally.
+
+## Built With
+
+- [Next.js](https://nextjs.org/) - The React framework for production.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [REST Countries API](https://restcountries.com/) - Provides country data used in this application.
+
+## Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgments
+
+- Thanks to [REST Countries](https://restcountries.com/) for providing the country data.
+- Special thanks to the Next.js and Tailwind CSS communities for their amazing tools and resources.
+
+---
+
+Enjoy exploring the world with CountryList / CountryFinder! 🌍🔍
