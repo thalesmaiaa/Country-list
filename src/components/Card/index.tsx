@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/navigation'
 
-import { Country } from '@/hooks/useFetchCountry'
 import { formatNumber } from '@/utils/formatNumber'
+import { Country } from '@/services/contexts'
 
 type CardProps = {
   item: Country

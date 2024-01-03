@@ -7,28 +7,35 @@ import { SearchIcon } from 'lucide-react'
 import * as Select from '@radix-ui/react-select'
 import { SelectItem } from '@/components/Select/SelectItem'
 import { SelectTrigger } from '@/components/Select/SelectTrigger'
-import { useFetchCountry } from '@/hooks/useFetchCountry'
 import { Card } from '@/components/Card'
 import { useDebounce } from '@/hooks/useDebounce'
 import { Loader } from '@/components/Loader'
+import { Country, useCountryContext } from '@/services/contexts'
+import { useCountry } from '@/hooks/useCountry'
 
 export default function Home() {
-  const { isFetching, list, getCountryByName, resetFilters, filterByRegion } =
-    useFetchCountry()
+  const { useQueryCountry, countryList } = useCountryContext()
+
+  const { data, isFetching } = useQueryCountry()
+
+  const { getCountryByName, resetFilters, filterByRegion } = useCountry({
+    countryList: countryList as Country[],
+  })
+
   const query = createRef<HTMLInputElement>()
 
   const handleInputChange = () => {
-    if (!query?.current?.value) {
+    const queryValue = query?.current?.value as string
+
+    if (!queryValue) {
       resetFilters()
     }
-    getCountryByName(query?.current?.value as string)
+    getCountryByName(queryValue)
   }
 
   const handleChange = useDebounce(handleInputChange, 1000)
 
-  if (isFetching) {
-    return <Loader />
-  }
+  if (isFetching) return <Loader />
 
   return (
     <div>
@@ -65,8 +72,8 @@ export default function Home() {
           </Select.Root>
         </div>
 
-        <div className="flex items-center tablet:justify-start justify-center gap-y-4 monitor:gap-x-28 desktop:gap-x-16 mobile:gap-x-4 tablet:gap-x-8 flex-wrap">
-          {list?.map((item) => <Card key={item.name.official} item={item} />)}
+        <div className="flex items-center  justify-between gap-y-4 monitor:gap-x-28 desktop:gap-x-16 mobile:gap-x-4 tablet:gap-x-8 flex-wrap">
+          {data?.map((item) => <Card key={item.name.official} item={item} />)}
         </div>
       </div>
     </div>

@@ -2,20 +2,20 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useQueryClient } from 'react-query'
 
 import { ArrowLeft } from 'lucide-react'
 
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/Button'
 import { Loader } from '@/components/Loader'
-import { appendDots } from '@/hooks/appendDots'
-import { Country, useFetchCountry } from '@/hooks/useFetchCountry'
 import { formatCurrency } from '@/utils/formatCurrecy'
 import { formatLanguages } from '@/utils/formatLanguages'
 import { formatNumber } from '@/utils/formatNumber'
+import { Borders, DescriptionItem } from './components'
+import { useCountry } from '@/hooks/useCountry'
+import { Country, useCountryContext } from '@/services/contexts'
 
 type Props = {
   params: {
@@ -26,7 +26,9 @@ type Props = {
 export default function Country({ params }: Props) {
   const router = useRouter()
 
-  const { getCountryBorders, getCountryByName } = useFetchCountry()
+  const { countryList } = useCountryContext()
+
+  const { getCountryByName } = useCountry({ countryList: countryList || [] })
 
   const queryClient = useQueryClient()
   const filteredList = queryClient.getQueryData<Country[]>('countryList')
@@ -38,7 +40,17 @@ export default function Country({ params }: Props) {
     getCountryByName(decodeURIComponent(`${name}`))
   }, [getCountryByName, name, queryClient])
 
-  const [parent] = useAutoAnimate()
+  const codesTranslation = useMemo(() => {
+    if (countryList?.length) {
+      return countryList?.reduce(
+        (acc: Record<string, string>, item: Country) => {
+          acc[item.cca3] = item.name.common
+          return acc
+        },
+        {},
+      )
+    }
+  }, [countryList])
 
   if (!country) {
     return <Loader />
@@ -73,50 +85,28 @@ export default function Country({ params }: Props) {
           </span>
           <div className="flex flex-col desktop:flex-row desktop:gap-32 gap-16 ">
             <div className="flex flex-col gap-3">
-              <span className="text-base font-normal capitalize">
-                Native name: {country.name.official}
-              </span>
-              <span className="text-base font-normal capitalize">
-                Population: {formatNumber(country.population)}
-              </span>
-              <span className="text-base font-normal capitalize">
-                Region: {country.region}
-              </span>
-              <span className="text-base font-normal capitalize">
-                Sub Region: {country.subregion}
-              </span>
-            </div>
-            <div className="flex flex-col gap-3">
-              <span className="text-base font-normal capitalize">
-                Capital: {country.capital}
-              </span>
-              <span className="text-base font-normal capitalize">
-                Currency: {formatCurrency(country.currencies)}
-              </span>
-              <span className="text-base font-normal capitalize">
-                Languages: {formatLanguages(country.languages)}
-              </span>
+              <DescriptionItem
+                title="Native name"
+                value={country.name.official}
+              />
+              <DescriptionItem
+                title="Population"
+                value={formatNumber(country.population)}
+              />
+              <DescriptionItem title="Region" value={country.region} />
+              <DescriptionItem title="Sub Region" value={country.subregion} />
+              <DescriptionItem title="Capital" value={country.capital} />
+              <DescriptionItem
+                title="Currency"
+                value={formatCurrency(country.currencies)}
+              />
+              <DescriptionItem
+                title="Languages"
+                value={formatLanguages(country.languages)}
+              />
             </div>
           </div>
-          {!!country.borders.length && (
-            <div
-              className="flex  desktop:items-center gap-4 flex-wrap truncate pb-6"
-              ref={parent}
-            >
-              <span className="w-full desktop:w-fit text-base font-normal capitalize">
-                Border Countries:
-              </span>
-              {getCountryBorders(country.borders).map((border) => (
-                <Button
-                  size="small"
-                  key={border}
-                  onClick={() => router.push(`/${border}`)}
-                >
-                  {appendDots(border, 15)}
-                </Button>
-              ))}
-            </div>
-          )}
+          <Borders country={country} codes={codesTranslation} />
         </div>
       </div>
     </div>
